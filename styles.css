@@ -7,3 +7,14 @@ h1 {
     color: black;
     text-align: center;
 }
+
+.container-cards{
+    display: flex;
+    margin: 50px ;
+}
+
+.card{
+    border: 1px black solid;
+    width: 50rem;
+    margin: 20px;
+}
