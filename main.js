@@ -1,6 +1,12 @@
 function cards (contain, cont){
     let precio = Math.round(Math.random() * (100000 - 50000) + 50000);
-    contain.push(`  <div class="card"> <img src="https://66d9ee6caa07a954166f10ed--gregarious-melba-cacdba.netlify.app/${cont}.jpg" class="card-img-top" alt="Auto"> <div class="card-body"><h5 class="card-title">Auto caro N° ${cont}</h5> <h4>Precio: $${precio}</h4> <a href="https://66d9ee6caa07a954166f10ed--gregarious-melba-cacdba.netlify.app/${cont}.jpg" target="_blank">Ver más</a></div></div>  `)
+    contain.push(`  <div class="card"> <img src="https://66d9ee6caa07a954166f10ed--gregarious-melba-cacdba.netlify.app/${cont}.jpg" class="card-img-top" alt="Auto"> <div class="card-body"><h5 class="card-title">Auto caro N° ${cont}</h5> <h4>Precio: $${precio}</h4> <a href="#" onClick="numAuto(${cont})">Ver más</a></div></div>  `)
+}
+
+function numAuto(numBtn){
+    sessionStorage.setItem('numBtn', numBtn);
+    console.log(numBtn)
+    window.location.href = './Producto/producto.html';
 }
 
 console.log("Hello World!")
