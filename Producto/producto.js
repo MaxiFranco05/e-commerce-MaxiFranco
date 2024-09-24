@@ -12,7 +12,8 @@ class prod {
 //     numAuto = Number(window.prompt("Ingrese un número del 1 al 9"))
 // } 
 
-let numAuto = sessionStorage.getItem('numBtn')
+let numAuto = 1
+numAuto = sessionStorage.getItem('numBtn')
 
 let precio = Math.round(Math.random() * (100000 - 50000) + 50000);
 let stock = Math.round(Math.random() * (10 - 1) + 1);
