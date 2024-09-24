@@ -5,7 +5,7 @@ function cards (contain, cont){
 
 function numAuto(numBtn){
     sessionStorage.setItem('numBtn', numBtn);
-    console.log(numBtn)
+    console.log(numBtn);
     window.location.href = './Producto/producto.html';
 }
 
@@ -13,7 +13,9 @@ console.log("Hello World!")
 document.querySelector("h1").innerText = 'Productos'
 let array = []
 let section = document.querySelector('section')
-numAuto(1)
+numBtn = 1
+sessionStorage.setItem('numBtn', numBtn);
+console.log(numBtn);
 
 for (let i = 1; i <= 9; i++){
     cards(array, i)
