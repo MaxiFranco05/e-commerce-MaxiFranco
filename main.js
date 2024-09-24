@@ -13,9 +13,11 @@ console.log("Hello World!")
 document.querySelector("h1").innerText = 'Productos'
 let array = []
 let section = document.querySelector('section')
+numAuto(1)
 
 for (let i = 1; i <= 9; i++){
     cards(array, i)
 }
+
 
 section.innerHTML = array.join("");
