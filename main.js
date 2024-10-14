@@ -13,7 +13,7 @@ console.log("Hello World!")
 document.querySelector("h1").innerText = 'Productos'
 let array = []
 let section = document.querySelector('section')
-numBtn = 1
+let numBtn = 1
 sessionStorage.setItem('numBtn', numBtn);
 console.log(numBtn);
 
