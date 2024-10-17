@@ -1,10 +1,6 @@
 let head = []
 const nav = [
     {
-        titulo : "ExpensiveCars",
-        href : "./index.html"
-    },
-    {
         titulo : "Home",
         href : "./index.html"
     },
