@@ -5,7 +5,7 @@ let producto = data.find((producto) => producto.id == id);
 sect.innerHTML = `  <div class="container">
     <div class="col-12 row border border-dark">
         <div class="col-9 p-0 border border-dark">
-            <img src="${producto.img}" alt="Auto" style="width: 100%;">
+            <img src="${producto.img}" alt="Auto" style="width: 100%; height: 100%;">
         </div>
         <div class="prod-data col-3 bg-light text-end border border-dark">
         <div>
