@@ -8,22 +8,45 @@ h1 {
     text-align: center;
     text-decoration: underline;
 }
+.container-menu{
+    display: flex;
+    border: solid black 1px;
+    margin: 10px;
+}
 
-section{
+.container-cards{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin: 50px;
+    background-color: linear-gradient(rgba(0, 0, 0, .9),rgba(0, 0, 0, .1));
+}
+
+.filters{
+    background: linear-gradient(rgba(0, 0, 0, .9),rgba(0, 0, 0, .1));
+    padding: 10px 30px;
+    color: white;
+}
+
+.filters ul li{
+    list-style: none;
+    cursor: pointer;
+    margin: 5px 0px;
+    padding: 0px;
+}
+
+input{
+    border-radius: 15px;
 }
 
 .card{
     border: 1px black solid;
-    margin: 20px;
+    margin: 10px;
+    width: 350px;
 }
 
 .card img {
     height: 200px;
-    width: 350px;
+    width: auto;
 }
 
 .card a {
@@ -39,4 +62,8 @@ section{
 .card a:hover{
     color: white;
     background-color: black;
+}
+
+.categoria{
+    color: green;
 }

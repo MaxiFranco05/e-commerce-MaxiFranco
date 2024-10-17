@@ -10,7 +10,7 @@ const nav = [
     },
     {
         titulo : "Cars",
-        href : "./Producto/producto.html"
+        href : "./producto.html?prod=1"
     }
 ];
 
@@ -19,6 +19,5 @@ for (let menu of nav){
         <a class="nav-link" href="${menu.href}">${menu.titulo}</a>`
     )
 };
-console.log(head)
 
 document.querySelector("#menuContainer").innerHTML = head.join("");
