@@ -11,8 +11,8 @@ let array = data.map((producto) => [`
                 <a href="./producto.html?prod=${producto.id}">Ver más</a>
             </div>
     </div>  
-    `])
-    let cards = document.querySelector('.container-cards')
+    `]);
+    let cards = document.querySelector('.container-cards');
     cards.innerHTML = array.join("");
 
 function filtrar(category){
