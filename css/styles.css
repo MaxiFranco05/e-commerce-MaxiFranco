@@ -8,6 +8,7 @@ h1 {
     text-align: center;
     text-decoration: underline;
 }
+
 .container-menu{
     display: flex;
     border: solid black 1px;
@@ -68,3 +69,4 @@ input{
 .categoria{
     color: green;
 }
+

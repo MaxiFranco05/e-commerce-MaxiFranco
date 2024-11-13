@@ -1,5 +1,6 @@
-document.querySelector("h1").innerText = 'Productos'
-let array = data.map((producto) => [`  
+document.querySelector("h1").innerText = "Productos";
+let array = data.map((producto) => [
+  `  
     <div class="card"> 
         <img src="${producto.img}" class="card-img-top" alt="Auto">
             <div class="card-body">
@@ -11,13 +12,15 @@ let array = data.map((producto) => [`
                 <a href="./producto.html?prod=${producto.id}">Ver más</a>
             </div>
     </div>  
-    `]);
-    let cards = document.querySelector('.container-cards');
-    cards.innerHTML = array.join("");
+    `,
+]);
+let cards = document.querySelector(".container-cards");
+cards.innerHTML = array.join("");
 
-function filtrar(category){
-    if (category === 'Todos'){
-        let array = data.map((producto) => [`  
+function filtrar(category) {
+  if (category === "Todos") {
+    let array = data.map((producto) => [
+      `  
              <div class="card"> 
                  <img src="${producto.img}" class="card-img-top" alt="Auto">
                      <div class="card-body">
@@ -29,13 +32,14 @@ function filtrar(category){
                          <a href="./producto.html?prod=${producto.id}">Ver más</a>
                      </div>
              </div>  
-             `]);
-    let cards = document.querySelector('.container-cards')
+             `,
+    ]);
+    let cards = document.querySelector(".container-cards");
     cards.innerHTML = array.join("");
-    }else
-    {
-    let filtrado = data.filter((filtro) => filtro.category === category)
-    array = filtrado.map((mostrar) => [`  
+  } else {
+    let filtrado = data.filter((filtro) => filtro.category === category);
+    array = filtrado.map((mostrar) => [
+      `  
         <div class="card"> 
             <img src="${mostrar.img}" class="card-img-top" alt="Auto">
                 <div class="card-body">
@@ -47,22 +51,22 @@ function filtrar(category){
                     <a href="./producto.html?prod=${mostrar.id}">Ver más</a>
                 </div>
         </div>  
-        `]);
+        `,
+    ]);
 
-let cards = document.querySelector('.container-cards')
-cards.innerHTML = array.join("");
-    }
+    let cards = document.querySelector(".container-cards");
+    cards.innerHTML = array.join("");
+  }
 }
 
-
-document.querySelector('input').addEventListener('input', function () {
-    const busqueda = this.value.toLowerCase();
-    filtroBusqueda(busqueda);
+document.querySelector("input").addEventListener("input", function () {
+  const busqueda = this.value.toLowerCase();
+  filtroBusqueda(busqueda);
 });
-
 function filtroBusqueda(busq) {
-    const filtrado = data.filter(car => car.title.toLowerCase().includes(busq));
-    const array = filtrado.map((mostrar) => `  
+  const filtrado = data.filter((car) => car.title.toLowerCase().includes(busq));
+  const array = filtrado.map(
+    (mostrar) => `  
         <div class="card"> 
             <img src="${mostrar.img}" class="card-img-top" alt="Auto">
             <div class="card-body">
@@ -74,8 +78,9 @@ function filtroBusqueda(busq) {
                 <a href="./producto.html?prod=${mostrar.id}">Ver más</a>
             </div>
         </div>  
-    `);
+    `
+  );
 
-    let cards = document.querySelector('.container-cards');
-    cards.innerHTML = array.join("");
+  let cards = document.querySelector(".container-cards");
+  cards.innerHTML = array.join("");
 }
