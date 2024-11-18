@@ -14,14 +14,14 @@ const compra =
     <p class="text-redir fs-6 text-primary"></p>`
     : `<div class="input-group mb-3">
          <div class="input-group-prepend">
-           <button class="btn btn-danger" type="button">-</button>
+           <button class="btn btn-danger" type="button" onclick="decremento()">-</button>
          </div>
-         <input type="text" class="form-control text-center" value="0" readonly>
+         <input type="number" class="form-control text-center" value="0" readonly>
          <div class="input-group-append">
-           <button class="btn btn-danger" type="button">+</button>
+           <button class="btn btn-danger" type="button" onclick="incremento()">+</button>
          </div>
        </div>
-       <a href="#" class="btn btn-dark">Comprar</a>`;
+       <a href="#" class="btn btn-dark" onclick="addCart()">Comprar</a>`;
 
 sect.innerHTML = `  <div class="container">
     <div class="col-12 row border border-dark">
@@ -33,8 +33,9 @@ sect.innerHTML = `  <div class="container">
         <div class="prod-data col-3 bg-light text-end border border-dark">
         <div>
         <h2>${producto.title}</h2>
-        <h3>Precio: $${producto.price}</h3>
-        <h5>${producto.details}</h5>
+        <h4 style="color: gray;">${producto.category}</h4>
+        <h5>Precio: $${producto.price}</h5>
+        <h6>${producto.details}</h6>
         <p class="cuotas">Hasta 18 cuotas sin interes.</p></div>
         ${compra.replace("`", "")}
         <p>Quedan: ${producto.stock} vehiculos.</p>
@@ -42,3 +43,43 @@ sect.innerHTML = `  <div class="container">
     </div>
     </div>
 </div>  `;
+
+const contador = document.querySelector("input");
+
+function incremento() {
+  contador.value = Number(contador.value) + 1;
+}
+
+function decremento() {
+  if (contador.value >= 1) {
+    contador.value = Number(contador.value) - 1;
+  }
+}
+
+function addCart() {
+  if (contador.value >= 1) {
+    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    const idProducto = Number(window.location.search.split("=")[1]);
+    const autoCarrito = carrito.find((auto) => auto.id === idProducto);
+    if (autoCarrito) {
+      autoCarrito.cantidad += Number(contador.value);
+    } else {
+      carrito.push({
+        id: idProducto,
+        cantidad: Number(contador.value),
+        title: producto.title,
+        details: producto.details,
+        price: producto.price,
+        category: producto.category,
+      });
+    }
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+    let cantidad = carrito.reduce(
+      (acumulado, actual) => acumulado + actual.cantidad,
+      0
+    );
+    localStorage.setItem("cantidad", cantidad);
+    document.querySelector("#contador-text").innerText = cantidad;
+    contador.value = 0;
+  }
+}

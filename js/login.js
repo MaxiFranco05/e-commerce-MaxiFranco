@@ -18,6 +18,8 @@ function Loginbtn() {
       document.querySelector("#inicio-sesion").textContent =
         "Inicio de sesión correctamente.";
       localStorage.setItem("login", true);
+      localStorage.setItem("carrito", JSON.stringify([]));
+      localStorage.setItem("cantidad", "0");
       setTimeout(function () {
         window.location.href = "./index.html";
       }, 1000);
