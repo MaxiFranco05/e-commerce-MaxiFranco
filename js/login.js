@@ -1,4 +1,5 @@
 localStorage.setItem("login", false);
+
 function Signupbtn() {
   document.querySelector(".contenedor-card").innerHTML =
     ' <div id="signup-card" class="login-container"><div class="login-box"><h2>Crea una cuenta</h2><p>Crea una cuenta para comprar los mejores autos.</p><form id="signupForm"><div class="form-floating mb-1"><input type="text" class="form-control" id="signup-username" placeholder="Usuario" required /><label for="signup-username">Usuario</label></div><div class="form-floating mb-1"><input type="email" class="form-control" id="signup-email" placeholder="Correo" required/><label for="signup-email">e-mail</label></div><div class="form-floating mb-1"><input type="password" class="form-control" id="signup-password" placeholder="Contraseña" required /><label for="signup-password">Contraseña</label></div><button type="submit">Crear cuenta</button><p id="cuenta-creada" style="color: green"></p><span class="go-login" onclick="Loginbtn()" style="color: rgb(177, 177, 177); cursor: pointer; margin: 2px 0">¿Ya tienes una cuenta? Inicia sesion.</span></form></div></div> ';
@@ -53,4 +54,10 @@ document.getElementById("signupForm").addEventListener("submit", function (e) {
 function ocultar(box) {
   var contraOculta = document.getElementById("login-password");
   contraOculta.type = box.checked ? "text" : "password";
+}
+
+if (localStorage.email.length > 1) {
+  Loginbtn();
+} else {
+  Signupbtn();
 }

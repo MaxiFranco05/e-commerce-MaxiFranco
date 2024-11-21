@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script>
+      if (localStorage.getItem("login") != "true") {
+        window.location.href = "./index.html";
+      }
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cart</title>
@@ -33,12 +38,15 @@
           </div>
           <div class="row my-4">
             <div class="col-sm-6">
-              <button class="btn btn-success">Seguir comprando</button>
+              <button class="btn btn-primary">Seguir comprando</button>
             </div>
             <div class="col-sm-6">
               <div class="text-sm-end mt-2 mt-sm-0">
                 <button onclick="borrarTodo()" class="btn btn-danger">
                   Borrar todo
+                </button>
+                <button onclick="checkout()" class="btn btn-success">
+                  Checkout
                 </button>
               </div>
             </div>
@@ -80,5 +88,6 @@
     <script src="./js/data.js"></script>
     <script src="./js/navbar.js"></script>
     <script src="./js/cart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </body>
 </html>

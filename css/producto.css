@@ -3,6 +3,29 @@ body {
   width: 100vw;
   height: 100vh;
   overflow-x: hidden;
+  background-image: url(https://png.pngtree.com/thumb_back/fw800/background/20231229/pngtree-a-collection-of-tire-tracks-patterns-and-textures-for-automobile-tires-image_13902049.png);
+}
+
+nav {
+  background: linear-gradient(-45deg, #451515, #de4646, #ef482a, #ff0000);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.container-fluid a {
+  color: rgb(255, 241, 241);
 }
 
 * {
@@ -57,6 +80,7 @@ section {
   flex-direction: column;
   justify-content: space-between;
   padding: 50px 20px;
+  background: linear-gradient(white, gray);
 }
 
 .btn {

@@ -1,22 +1,30 @@
 document.querySelector("h1").innerText = "Productos";
-let array = data.map((producto) => [
-  `  
+const loading = new Promise((res, rej) => {
+  setTimeout(() => {
+    res("resuelto");
+  }, 3000);
+});
+
+function cardsPromise() {
+  let array = data.map((producto) => [
+    `  
     <div class="card"> 
         <img src="${producto.img}" class="card-img-top" alt="Auto">
             <div class="card-body">
                 <h5 class="card-title">${producto.title}</h5> 
                 <h6 class="categoria">${producto.category}</h6>
                 <h6>${producto.details}</h6> 
-                <h5>Precio: $${producto.price}</h5> 
+                <h5>Precio: $${producto.price.toLocaleString("es-ES")}</h5> 
                 <h6>Disponibles: ${producto.stock}</h6>
                 <a href="./producto.html?prod=${producto.id}">Ver más</a>
             </div>
     </div>  
     `,
-]);
-let cards = document.querySelector(".container-cards");
-cards.innerHTML = array.join("");
-
+  ]);
+  let cards = document.querySelector(".container-cards");
+  cards.innerHTML = array.join("");
+}
+loading.then(() => cardsPromise());
 function filtrar(category) {
   if (category === "Todos") {
     let array = data.map((producto) => [
@@ -27,9 +35,13 @@ function filtrar(category) {
                          <h5 class="card-title">${producto.title}</h5> 
                          <h6 class="categoria">${producto.category}</h6>
                          <h6>${producto.details}</h6> 
-                         <h5>Precio: $${producto.price}</h5> 
+                         <h5>Precio: $${producto.price.toLocaleString(
+                           "es-ES"
+                         )}</h5> 
                          <h6>Disponibles: ${producto.stock}</h6>
-                         <a href="./producto.html?prod=${producto.id}">Ver más</a>
+                         <a href="./producto.html?prod=${
+                           producto.id
+                         }">Ver más</a>
                      </div>
              </div>  
              `,
@@ -46,7 +58,7 @@ function filtrar(category) {
                     <h5 class="card-title">${mostrar.title}</h5> 
                     <h6 class="categoria">${mostrar.category}</h6>
                     <h6>${mostrar.details}</h6> 
-                    <h5>Precio: $${mostrar.price}</h5> 
+                    <h5>Precio: $${mostrar.price.toLocaleString("es-ES")}</h5> 
                     <h6>Disponibles: ${mostrar.stock}</h6>
                     <a href="./producto.html?prod=${mostrar.id}">Ver más</a>
                 </div>
@@ -73,7 +85,7 @@ function filtroBusqueda(busq) {
                 <h5 class="card-title">${mostrar.title}</h5> 
                 <h6 class="categoria">${mostrar.category}</h6>
                 <h6>${mostrar.details}</h6> 
-                <h5>Precio: $${mostrar.price}</h5> 
+                <h5>Precio: $${mostrar.price.toLocaleString("es-ES")}</h5> 
                 <h6>Disponibles: ${mostrar.stock}</h6>
                 <a href="./producto.html?prod=${mostrar.id}">Ver más</a>
             </div>

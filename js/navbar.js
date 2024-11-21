@@ -2,48 +2,11 @@ if (window.location.pathname.includes("producto.html")) {
   let idVent = window.location.search.split("=")[1];
   localStorage.setItem("idVent", idVent);
 }
-document.querySelector("#modal").innerHTML = `
-      <div class="modal fade" id="logOutQuestion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">¿Seguro que quiere cerrar sesión?</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              Si cierra sesión, tendrá que volver a ingresar y perderá su registro de carrito.
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-              <button type="button" id="cerrar-sesion" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#logOutQuestion2">Sí, quiero cerrar sesión.</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="modal fade" id="logOutQuestion2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">¿Quiere eliminar su cuenta?</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              Si elimina su cuenta, se borrara todo su registro y no volverá a acceder a la misma. <br>
-              Tendra que crear otra cuenta para acceder.
-            </div>
-            <div class="modal-footer">
-              <a href="./login.html"<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Solo cerrar sesión.</button></a>
-              <button type="button" id="borrar-cuenta" class="btn btn-primary">Borrar cuenta.</button>
-            </div>
-          </div>
-        </div>
-      </div>
-  `;
 
 document.querySelector("header").innerHTML = `
-<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+<nav class="navbar fixed-top navbar-expand-lg text-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="./index.html">ExpensiveCars</a>
+          <a class="navbar-brand" href="./index.html"><i class="bi bi-ev-front-fill"></i> ExpensiveCars</a>
           <div>
             <button
               class="navbar-toggler"
@@ -57,7 +20,7 @@ document.querySelector("header").innerHTML = `
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-              <div class="navbar-nav" id="menuContainer"></div>
+              <div class="navbar-nav text-light" id="menuContainer"></div>
             </div>
           </div>
         </div>
@@ -87,20 +50,20 @@ const nav = [
     icon: '<i class="bi bi-person-circle"></i>',
   },
 ];
-
-if (localStorage.getItem("login") === "true") {
-  localStorage.setItem("cart", JSON.stringify([]));
+function ActContador(head) {
+  const cantidad = localStorage.getItem("cantidad") || 0;
   head.push(
     `<div><a class="nav-link" href="./cart.html">
-    <b id="contador-text">${localStorage.getItem(
-      "cantidad"
-    )}</b id="contador-text">
+    <b id="contador-text">${cantidad}</b id="contador-text">
     <i class="bi bi-cart-fill"></i>
     Cart
     </a></div>`
   );
 }
 
+if (localStorage.getItem("login") === "true") {
+  ActContador(head);
+}
 for (let i = 0; i < 3; i++) {
   head.push(
     `<div class="${nav[
@@ -117,7 +80,7 @@ if (localStorage.getItem("login") === "true") {
       .replaceAll(/ /g, "")
       .toLowerCase()}-div"><a class="btn nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
       ${nav[3].icon} ¡Hola, ${localStorage.getItem("name")}!
-      </a><ul class="dropdown-menu"><li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#logOutQuestion"><i class="bi bi-person-fill-dash"></i> Log out</a></li></ul></div>`
+      </a><ul class="dropdown-menu bg-dark"><li><a class="dropdown-item" style="cursor: pointer;" onclick="sessionOut()"><i class="bi bi-person-fill-dash"></i> Cerrar sesión</a></li><li><a class="dropdown-item" style="cursor: pointer;" onclick="delAcc()"><i class="bi bi-person-fill-slash"></i> Eliminar cuenta</a></li></ul></div>`
   );
 } else {
   head.push(
@@ -130,17 +93,52 @@ if (localStorage.getItem("login") === "true") {
   );
 }
 
-let sessionOut = document.querySelector("#cerrar-sesion");
-sessionOut.addEventListener("click", function () {
-  localStorage.setItem("login", "false");
-});
-
-let deleteAcc = document.querySelector("#borrar-cuenta");
-deleteAcc.addEventListener("click", function () {
-  localStorage.clear();
-  setTimeout(() => {
-    window.location.href = "./login.html";
-  }, 750);
-});
-
 document.querySelector("#menuContainer").innerHTML = head.join("");
+
+function sessionOut() {
+  Swal.fire({
+    title: "¿Quiere cerrar sesión?",
+    text: "Si cierra sesión, se borrará su carrito y tendra que volver a iniciar.",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Sí, cerrar sesión.",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire({
+        title: "Cuenta cerrada exitosamente.",
+        text: "¡Vuelva pronto!",
+        icon: "success",
+      });
+      setTimeout(() => {
+        localStorage.setItem("login", "false");
+        window.location.href = "./login.html";
+      }, 1500);
+    }
+  });
+}
+
+function delAcc() {
+  Swal.fire({
+    title: "¿Quiere eliminar su cuenta?",
+    text: "⚠ Esta acción es irreversible ⚠",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Sí, eliminar cuenta.",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire({
+        title: "Cuenta eliminada exitosamente.",
+        text: "¡Vuelva pronto!",
+        icon: "success",
+      });
+      localStorage.clear();
+      setTimeout(() => {
+        window.location.href = "./login.html";
+      }, 1500);
+    }
+  });
+}
